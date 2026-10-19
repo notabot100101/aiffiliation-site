@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120" role="img" aria-label="aiffiliation">
+  <style>text{font-family:Inter,'Segoe UI',system-ui,-apple-system,sans-serif;font-weight:700;letter-spacing:-1px}</style>
+  <text x="20" y="82" font-size="72">
+    <tspan fill="#2563EB">ai</tspan><tspan fill="#0F172A">ffiliation</tspan>
+  </text>
+  <rect x="20" y="98" width="132" height="6" rx="3" fill="#2563EB"/>
+</svg>

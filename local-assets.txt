@@ -1,0 +1,4 @@
+/kontakt/?subject=Enterprise%20Paket%20anfragen
+/kontakt/?subject=Individuelles%20Angebot
+/kontakt/?subject=Professional%20Paket%20anfragen
+/kontakt/?subject=Starter%20Paket%20anfragen
