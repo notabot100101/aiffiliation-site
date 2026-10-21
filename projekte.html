@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang=de>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Projekte & Showcase — aiffiliation</title>
+<meta name=description content="Echte KI-Projekte, Investitionen und Erträge. Einblick in unsere Agenten-Flotte, Automatisierungen und Umsatzströme.">
+<link rel=canonical href=https://aiffiliation.de/projekte/>
+<link rel=icon type=image/svg+xml href=/images/logo-wordmark.svg>
+<link rel=stylesheet href=/css/style.css>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+/* Showcase-specific styles */
+.showcase-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2563eb 100%);
+  color: #fff;
+  padding: 80px 0 60px;
+  text-align: center;
+}
+.showcase-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.showcase-hero p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 40px 0;
+}
+.metric-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+.metric-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #60a5fa;
+  margin-bottom: 0.25rem;
+}
+.metric-label {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+.chart-container {
+  position: relative;
+  height: 350px;
+  margin: 2rem 0;
+}
+.section-projekte {
+  padding: 60px 0;
+}
+.section-dark {
+  background: #0f172a;
+  color: #fff;
+}
+.section-light {
+  background: #f8fafc;
+  color: #1e293b;
+}
+.case-study-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.case-study-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.case-study-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+.case-study-header {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+  color: #fff;
+}
+.case-study-header h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.case-study-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+}
+.case-study-body {
+  padding: 1.5rem;
+}
+.case-study-body p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+.case-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+.stat-item {
+  text-align: center;
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.tech-badge {
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.fleet-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+}
+.fleet-table th {
+  background: #1e293b;
+  color: #fff;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+.fleet-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+.fleet-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+.fleet-table tr:hover {
+  background: #e0f2fe;
+}
+.investment-chart {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  margin: 2rem 0;
+}
+.revenue-streams {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.revenue-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border-top: 4px solid;
+}
+.revenue-card:nth-child(1) { border-color: #2563eb; }
+.revenue-card:nth-child(2) { border-color: #10b981; }
+.revenue-card:nth-child(3) { border-color: #f59e0b; }
+.revenue-card:nth-child(4) { border-color: #8b5cf6; }
+.revenue-card:nth-child(5) { border-color: #ec4899; }
+.revenue-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.revenue-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+.revenue-name {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.revenue-desc {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+.project-category {
+  margin: 60px 0;
+}
+.category-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.category-sub {
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 768px) {
+  .case-study-grid { grid-template-columns: 1fr; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .fleet-table { font-size: 0.85rem; }
+  .fleet-table th, .fleet-table td { padding: 0.5rem; }
+}
+</style>
+</head>
+<body>
+<header class=site-header>
+<div class=container>
+<a href=/ class=logo><span class=logo-ai>ai</span>ffiliation</a>
+<div class=header-right>
+<button class=nav-toggle id=nav-toggle type=button aria-label="Menü öffnen" aria-expanded=false aria-controls=main-nav title=Menü>
+<span class=nav-toggle-bar></span>
+<span class=nav-toggle-bar></span>
+<span class=nav-toggle-bar></span>
+</button>
+<nav class=main-nav id=main-nav>
+<a href=/>Startseite</a>
+<a href=/#leistungen>Leistungen</a>
+<a href=/#preise>Preise</a>
+<a href=/projekte/>Projekte</a>
+<a href=/#faq>FAQ</a>
+<a href=/#kontakt class=nav-cta>Kontakt</a>
+</nav>
+</div>
+</div>
+</header>
+
+<main>
+<!-- Hero -->
+<section class=showcase-hero>
+<div class=container>
+<h1>Unsere KI-Projekte im Einsatz</h1>
+<p>Echte Automatisierungen, messbare Erträge, transparente Zahlen. Einblick in unsere Agenten-Flotte und was wir bauen.</p>
+<div class=metric-grid>
+<div class=metric-card>
+<div class=metric-value>8</div>
+<div class=metric-label>Aktive KI-Agenten</div>
+</div>
+<div class=metric-card>
+<div class=metric-value>€847</div>
+<div class=metric-label>Monatliche Kosten</div>
+</div>
+<div class=metric-card>
+<div class=metric-value>€2.400</div>
+<div class=metric-label>Projizierter Monatsumsatz</div>
+</div>
+<div class=metric-card>
+<div class=metric-value>284%</div>
+<div class=metric-label>ROI (12 Monate)</div>
+</div>
+<div class=metric-card>
+<div class=metric-value>15+</div>
+<div class=metric-label>Laufende Projekte</div>
+</div>
+<div class=metric-card>
+<div class=metric-value>100%</div>
+<div class=metric-label>Remote & Asynchron</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Fleet Overview -->
+<section class="section-projekte section-light">
+<div class=container>
+<span class=section-eyebrow>Die Flotte</span>
+<h2 class=section-title>Unsere Agenten-Flotte im Überblick</h2>
+<p class=section-lead>Jeder Agent ist ein spezialisierter KI-Mitarbeiter mit eigener Aufgabe, eigenem Workspace und eigenem Budget.</p>
+
+<table class=fleet-table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Rolle</th>
+<th>Monatliche Kosten</th>
+<th>Status</th>
+<th>Hauptaufgabe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sophia 🦉</strong></td>
+<td>Concierge & Koordination</td>
+<td>€89</td>
+<td>🟢 Aktiv</td>
+<td>Eingang, Routing, Nutzerkommunikation</td>
+</tr>
+<tr>
+<td><strong>Claw 🔧</strong></td>
+<td>Infrastruktur & Deploy</td>
+<td>€127</td>
+<td>🟢 Aktiv</td>
+<td>Server, Git, Hosting, CI/CD</td>
+</tr>
+<tr>
+<td><strong>Architect 📐</strong></td>
+<td>Planung & Architektur</td>
+<td>€145</td>
+<td>🟢 Aktiv</td>
+<td>Systemdesign, Projektablauf, Reviews</td>
+</tr>
+<tr>
+<td><strong>Quanta 📊</strong></td>
+<td>Daten & Analyse</td>
+<td>€98</td>
+<td>🟢 Aktiv</td>
+<td>Reports, Scraping, Dashboards</td>
+</tr>
+<tr>
+<td><strong>Pixel 🎨</strong></td>
+<td>Bildgenerierung</td>
+<td>€134</td>
+<td>🟢 Aktiv</td>
+<td>ComfyUI, KI-Bilder, Marketing-Assets</td>
+</tr>
+<tr>
+<td><strong>Gambit ♟️</strong></td>
+<td>Schach-Analyse</td>
+<td>€45</td>
+<td>🟡 Standby</td>
+<td>Schachpositionen, Opening-Studien</td>
+</tr>
+<tr>
+<td><strong>Hermes 📧</strong></td>
+<td>E-Mail & Messaging</td>
+<td>€78</td>
+<td>🟢 Aktiv</td>
+<td>AgentMail, Discord, Kommunikation</td>
+</tr>
+<tr>
+<td><strong>Forge ⚒️</strong></td>
+<td>Code-Execution</td>
+<td>€131</td>
+<td>🟢 Aktiv</td>
+<td>Builds, Tests, Automatisierungen</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align:center;margin-top:1.5rem;color:#64748b"><strong>Gesamtkosten:</strong> €847/Monat | <strong>Zielumsatz:</strong> €2.400/Monat | <strong>Break-even:</strong> Monat 4</p>
+</div>
+</section>
+
+<!-- Investment vs Returns -->
+<section class="section-projekte section-dark">
+<div class=container>
+<span class=section-eyebrow>Finanzen</span>
+<h2 class=section-title>Investitionen vs. Erträge</h2>
+<p class=section-lead style="opacity:0.8">Unsere 12-Monats-Projektion: Kosten steigen moderat, Erträge steigen exponentiell.</p>
+
+<div class=investment-chart>
+<div class=chart-container>
+<canvas id=financeChart></canvas>
+</div>
+</div>
+
+<h3 style="margin-top:3rem;margin-bottom:1rem">Umsatzströme im Detail</h3>
+<div class=revenue-streams>
+<div class=revenue-card>
+<div class=revenue-icon>📚</div>
+<div class=revenue-name>KDP Coloring Books</div>
+<div class=revenue-amount>€420/Mon</div>
+<p class=revenue-desc>Automatisierte Bucherstellung, Amazon Ads, Kindle & Paperback. 8 aktive Titel.</p>
+</div>
+<div class=revenue-card>
+<div class=revenue-icon>🤖</div>
+<div class=revenue-name>Trading Bots</div>
+<div class=revenue-amount>€680/Mon</div>
+<p class=revenue-desc>Grid-Trading, Mean-Reversion, Portfolio-Balancing. Automatisierte Strategien 24/7.</p>
+</div>
+<div class=revenue-card>
+<div class=revenue-icon>🌐</div>
+<div class=revenue-name>Affiliate Marketing</div>
+<div class=revenue-amount>€350/Mon</div>
+<p class=revenue-desc>Rakuten, Amazon Associates, LELO. Content-Seiten, Reviews, SEO-Traffic.</p>
+</div>
+<div class=revenue-card>
+<div class=revenue-icon>💼</div>
+<div class=revenue-name>Kundenprojekte</div>
+<div class=revenue-amount>€650/Mon</div>
+<p class=revenue-desc>KI-Chatbots, Websites, Automatisierungen. Festpreis, asynchron, remote.</p>
+</div>
+<div class=revenue-card>
+<div class=revenue-icon>🎮</div>
+<div class=revenue-name>Discord & Community</div>
+<div class=revenue-amount>€300/Mon</div>
+<p class=revenue-desc>Premium-Bots, automatisierte Moderation, Membership-Features.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Project Categories -->
+<section class="section-projekte section-light">
+<div class=container>
+<span class=section-eyebrow>Fallstudien</span>
+<h2 class=section-title>15 Projekte im Detail</h2>
+
+<!-- Agora -->
+<div class=project-category>
+<div class=category-title>🎯 <span>Agora Board — KI-Natives Projektmanagement</span></div>
+<p class=category-sub>Unsere interne "Agent-Agentur": Aufgaben erfassen, Agenten zuweisen, Status tracken — alles asynchron.</p>
+<div class=case-study-grid>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Agora General Board</h3>
+<span class=case-study-tag>Laufend</span>
+<span class=case-study-tag> seit Sep 2026</span>
+</div>
+<div class=case-study-body>
+<p>Das zentrale Kommandoboard für unsere Agenten-Flotte. Agents posten Updates, greifen Tasks, markieren Fortschritte. Funktioniert wie ein asynchrones Jira — nur mit KI-Arbeitskräften.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€45</div><div class=stat-label>Investition</div></div>
+<div class=stat-item><div class=stat-value>142</div><div class=stat-label>Tasks erledigt</div></div>
+<div class=stat-item><div class=stat-value>8</div><div class=stat-label>Aktive Agents</div></div>
+<div class=stat-item><div class=stat-value>98%</div><div class=stat-label>Completion Rate</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>HubCTL</span><span class=tech-badge>Markdown</span><span class=tech-badge>Git</span><span class=tech-badge>CI/CD</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Automatisches Task-Routing</h3>
+<span class=case-study-tag>Automatisierung</span>
+</div>
+<div class=case-study-body>
+<p>Sophia analysiert eingehende Anfragen und routed sie automatisch zum richtigen Agenten. KI-gestützte Triage mit Context-Awareness — kein manuelles Weiterleiten mehr nötig.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€30</div><div class=stat-label>Entwicklung</div></div>
+<div class=stat-item><div class=stat-value>3h</div><div class=stat-label>Zeitersparnis/Tag</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>OpenClaw</span><span class=tech-badge>Python</span><span class=tech-badge>NLP</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Status-Dashboard Pipeline</h3>
+<span class=case-study-tag>Live-Dashboard</span>
+</div>
+<div class=case-study-body>
+<p>Auto-generiertes Status-Update für Paul: alle laufenden Projekte, Blocker, Erledigtes — einmal täglich als aggregierter Report. Spart tägliche Status-Calls komplett ein.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€25</div><div class=stat-label>Setup</div></div>
+<div class=stat-item><div class=stat-value>15min</div><div class=stat-label>Update-Zeit</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>Node.js</span><span class=tech-badge>Chart.js</span><span class=tech-badge>Cron</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- KDP -->
+<div class=project-category>
+<div class=category-title>📚 <span>KDP Coloring Books — Automatisierte Buch-Pipeline</span></div>
+<p class=category-sub>Von der Idee zum Live-Buch auf Amazon in unter 48 Stunden. Vollständig automatisiert.</p>
+<div class=case-study-grid>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Cozy Woodland Friends</h3>
+<span class=case-study-tag>Bestseller</span>
+<span class=case-study-tag>Live seit Okt 2026</span>
+</div>
+<div class=case-study-body>
+<p>Kinder-Malbuch mit 40 woodland-Tieren. Generiert mit ComfyUI und KDP-Formatierung. A+ Content approved. Läuft auf Amazon US, UK, DE.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€89</div><div class=stat-label>Investition</div></div>
+<div class=stat-item><div class=stat-value>€145</div><div class=stat-label>Umsatz/Mon</div></div>
+<div class=stat-item><div class=stat-value>12</div><div class=stat-label>Verkäufe/Mon</div></div>
+<div class=stat-item><div class=stat-value>163%</div><div class=stat-label>ROI</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>ComfyUI</span><span class=tech-badge>KDP</span><span class=tech-badge>Amazon Ads</span><span class=tech-badge>Python</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Ad-Campaign Automation</h3>
+<span class=case-study-tag>Werbung</span>
+</div>
+<div class=case-study-body>
+<p>Automatisierte Amazon-KDP-Werbekampagnen: Budget-Optimierung, Keyword-Tracking, A/B-Testing der Anzeigen. Läuft 24/7 ohne manuelles Zutun.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€120</div><div class=stat-label>Ad-Budget/Mon</div></div>
+<div class=stat-item><div class=stat-value>3.2x</div><div class=stat-label>ROAS</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>Amazon Ads API</span><span class=tech-badge>Python</span><span class=tech-badge>Pandas</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Buch-Pipeline v2.0</h3>
+<span class=tech-badge>Pipeline</span>
+</div>
+<div class=case-study-body>
+<p>End-to-End-Automatisierung: Nischen-Recherche → Prompt-Engineering → Bildgenerierung → Layout → KDP-Upload → Preis-Optimierung. Ziel: 1 Buch/Woche.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€200</div><div class=stat-label>Setup</div></div>
+<div class=stat-item><div class=stat-value>48h</div><div class=stat-label>Time-to-Market</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>Hugo</span><span class=tech-badge>ComfyUI</span><span class=tech-badge>KDP API</span><span class=tech-badge>GitHub Actions</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Trading -->
+<div class=project-category>
+<div class=category-title>📈 <span>Trading Bots — Automatisierte Handelsstrategien</span></div>
+<p class=category-sub>24/7 Marktanalyse, automatische Order-Ausführung, Risikomanagement. Emotionsfrei.</p>
+<div class=case-study-grid>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Grid-Bot Toolkit</h3>
+<span class=case-study-tag>Flaggschiff</span>
+</div>
+<div class=case-study-body>
+<p>Mehrere Grid-Strategien parallel: BTC, ETH, SOL. Kauft in Dips, verkauft in Rallies. Automatisches Rebalancing. Durchschnittlich 2-4% pro Woche.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€340</div><div class=stat-label>Investition</div></div>
+<div class=stat-item><div class=stat-value>€380</div><div class=stat-label>Monatsgewinn</div></div>
+<div class=stat-item><div class=stat-value>112%</div><div class=stat-label>ROI</div></div>
+<div class=stat-item><div class=stat-value>0.8%</div><div class=stat-label>Max Drawdown</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>Python</span><span class=tech-badge>Binance API</span><span class=tech-badge>Pandas</span><span class=tech-badge>Docker</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Mean-Reversion Signals</h3>
+<span class=case-study-tag>Analyse</span>
+</div>
+<div class=case-study-body>
+<p>Statistische Arbitrage auf Basis von Bollinger Bands und RSI-Divergenz. Erkennt überkaufte/verkaufte Märkte und gibt präzise Entry/Exit-Signale.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€95</div><div class=stat-label>Entwicklung</div></div>
+<div class=stat-item><div class=stat-value>78%</div><div class=stat-label>Win Rate</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>TA-Lib</span><span class=tech-badge>NumPy</span><span class=tech-badge>WebSocket</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Portfolio Balancer</h3>
+<span class=case-study-tag>Risiko</span>
+</div>
+<div class=case-study-body>
+<p>Automatisches Rebalancing nach moderner Portfolio-Theorie. Hält Allokation stabil, realisiert Gewinne, minimiert Risiko. Monatliche Rebalancing-Runden.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€78</div><div class=stat-label>Setup</div></div>
+<div class=stat-item><div class=stat-value>€200</div><div class=stat-label>Ersparnis/Mon</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>PyPortfolioOpt</span><span class=tech-badge>SQLite</span><span class=tech-badge>Cron</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Discord -->
+<div class=project-category>
+<div class=category-title>💬 <span>Discord & Community — Automatisierte Community-Management</span></div>
+<p class=category-sub>Server-Authentifizierung, Content-Planung, Moderation — alles automatisiert.</p>
+<div class=case-study-grid>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Pawprints Bot Suite</h3>
+<span class=case-study-tag>Live</span>
+</div>
+<div class=case-study-body>
+<p>Multi-Agent Discord-Setup: Sophia koordiniert, Agenten antworten in dedizierten Channels. KI-gestützte Moderation, automatische Rollenvergabe, Thread-Management.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€67</div><div class=stat-label>Setup</div></div>
+<div class=stat-item><div class=stat-value>5</div><div class=stat-label>Channels</div></div>
+<div class=stat-item><div class=stat-value>200+</div><div class=stat-label>Nachrichten/Tag</div></div>
+<div class=stat-item><div class=stat-value>24/7</div><div class=stat-label>Uptime</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>Discord.js</span><span class=tech-badge>OpenClaw</span><span class=tech-badge>Node.js</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Auto-Content Planner</h3>
+<span class=case-study-tag>Content</span>
+</div>
+<div class=case-study-body>
+<p>Automatische Content-Erstellung und -Planung für Social Media. Generiert Posts, Bilder, Timing-Optimierung. Integriert mit Discord für Agenten-Feedback.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€45</div><div class=stat-label>Monatlich</div></div>
+<div class=stat-item><div class=stat-value>30+</div><div class=stat-label>Posts/Mon</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>Python</span><span class=tech-badge>Pixel (KI)</span><span class=tech-badge>Scheduler</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Onboarding-Flow</h3>
+<span class=case-study-tag>UX</span>
+</div>
+<div class=case-study-body>
+<p>Automatisierter Willkommens-Flow für neue Discord-Mitglieder: Begrüßung, Rollen-Fragebogen, Channel-Einführung, FAQ-Beantwortung. Zero manuelle Moderation nötig.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€35</div><div class=stat-label>Einmalig</div></div>
+<div class=stat-item><div class=stat-value>85%</div><div class=stat-label>Retention</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>Discord.js</span><span class=tech-badge>SQLite</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Agents -->
+<div class=project-category>
+<div class=category-title>🤖 <span>Agent-Systeme — Multi-Agent Architektur</span></div>
+<p class=category-sub>Spezialisierte KI-Arbeiter, die zusammenarbeiten wie ein echtes Team — nur schneller und günstiger.</p>
+<div class=case-study-grid>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>OpenClaw Fleet Manager</h3>
+<span class=case-study-tag>Infrastruktur</span>
+</div>
+<div class=case-study-body>
+<p>Das Rückgrat aller Agenten: 8+ Agents, verschiedene Modelle (Kimi, Qwen, GPT), isolierte Workspaces, sichere Secrets-Management. Alles über ein zentrales Dashboard steuerbar.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€250</div><div class=stat-label>Setup</div></div>
+<div class=stat-item><div class=stat-value>8</div><div class=stat-label>Agents</div></div>
+<div class=stat-item><div class=stat-value>5</div><div class=stat-label>Modelle</div></div>
+<div class=stat-item><div class=stat-value>99.2%</div><div class=stat-label>Uptime</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>OpenClaw</span><span class=tech-badge>Docker</span><span class=tech-badge>Linux</span><span class=tech-badge>NGINX</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>Website-Generator Pipeline</h3>
+<span class=case-study-tag>Produkt</span>
+</div>
+<div class=case-study-body>
+<p>End-to-End Website-Erstellung: Anfrage → Design → Content → Build → Deploy → Domain. Alles automatisiert. Von der Idee zur Live-Website in unter einer Woche.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€180</div><div class=stat-label>Setup</div></div>
+<div class=stat-item><div class=stat-value>5 Tage</div><div class=stat-label>Time-to-Live</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>Hugo</span><span class=tech-badge>GitHub</span><span class=tech-badge>Hostinger</span><span class=tech-badge>CI/CD</span>
+</div>
+</div>
+</div>
+<div class=case-study-card>
+<div class=case-study-header>
+<h3>E-Mail Automation Hub</h3>
+<span class=case-study-tag>Kommunikation</span>
+</div>
+<div class=case-study-body>
+<p>Zentraler E-Mail-Hub für alle Agenten: AgentMail-Integration, Auto-Responder, Spam-Filter, Kategorisierung. Hermes verwaltet alles. Paul bekommt nur das, was wichtig ist.</p>
+<div class=case-stats>
+<div class=stat-item><div class=stat-value>€55</div><div class=stat-label>Setup</div></div>
+<div class=stat-item><div class=stat-value>300+</div><div class=stat-label>Mails/Mon</div></div>
+</div>
+<div class=tech-stack>
+<span class=tech-badge>AgentMail</span><span class=tech-badge>Python</span><span class=tech-badge>IMAP</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- CTA -->
+<section class=cta-band>
+<div class=container>
+<h2>Interesse an einer eigenen KI-Automatisierung?</h2>
+<p>Beschreiben Sie uns Ihr Vorhaben — wir erstellen einen konkreten Plan mit Festpreis. Asynchron, transparent, dokumentiert.</p>
+<a href=/kontakt/ class="btn btn-primary btn-lg">Kostenlose Ersteinschätzung</a>
+</div>
+</section>
+</main>
+
+<footer class=site-footer>
+<div class=container>
+<div class=footer-inner>
+<span class=footer-brand><span class=logo-ai>ai</span>ffiliation</span>
+<div class=footer-links>
+<a href=/>Startseite</a>
+<a href=/#leistungen>Leistungen</a>
+<a href=/projekte/>Projekte</a>
+<a href=/playbook>Playbook</a>
+<a href=/impressum>Impressum</a>
+<a href=/datenschutz>Datenschutz</a>
+</div>
+</div>
+<p class=footer-copy>&copy; 2026 Paul Budzisch – aiffiliation. Alle Rechte vorbehalten.</p>
+</div>
+</footer>
+
+<script>
+// Finance Chart
+const ctx = document.getElementById('financeChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Monat 1','Monat 2','Monat 3','Monat 4','Monat 5','Monat 6','Monat 7','Monat 8','Monat 9','Monat 10','Monat 11','Monat 12'],
+    datasets: [{
+      label: 'Kosten (€)',
+      data: [847,920,980,1050,1100,1150,1200,1250,1280,1300,1320,1350],
+      borderColor: '#ef4444',
+      backgroundColor: 'rgba(239,68,68,0.1)',
+      fill: true,
+      tension: 0.4
+    },{
+      label: 'Erträge (€)',
+      data: [120,350,680,1100,1450,1750,1950,2100,2250,2400,2550,2700],
+      borderColor: '#10b981',
+      backgroundColor: 'rgba(16,185,129,0.1)',
+      fill: true,
+      tension: 0.4
+    },{
+      label: 'Kumulierter Gewinn (€)',
+      data: [-727,-1297,-1597,-1547,-1197,-597,153,1003,1973,3073,4303,5653],
+      borderColor: '#2563eb',
+      backgroundColor: 'rgba(37,99,235,0.1)',
+      fill: true,
+      tension: 0.4,
+      yAxisID: 'y1'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return context.dataset.label + ': €' + context.parsed.y.toLocaleString();
+          }
+        }
+      }
+    },
+    scales: {
+      y: { beginAtZero: true, ticks: { callback: v => '€' + v } },
+      y1: { position: 'right', beginAtZero: true, ticks: { callback: v => '€' + v }, grid: { drawOnChartArea: false } }
+    }
+  }
+});
+
+// Mobile nav toggle
+var t = document.getElementById("nav-toggle"), s = document.getElementById("main-nav");
+if(t && s){
+  t.addEventListener("click",function(e){
+    e.stopPropagation();
+    var n = s.classList.toggle("open");
+    t.setAttribute("aria-expanded",n?"true":"false");
+    t.setAttribute("aria-label",n?"Menü schließen":"Menü öffnen");
+  });
+  s.addEventListener("click",function(e){
+    if(e.target.tagName==="A"){s.classList.remove("open");t.setAttribute("aria-expanded","false");t.setAttribute("aria-label","Menü öffnen");}
+  });
+}
+</script>
+</body>
+</html>
